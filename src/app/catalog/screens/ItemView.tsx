@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface IItemViewProps {
-  description?: string;
+  id: string;
 }
 
 export interface IItemViewState {
@@ -24,7 +24,7 @@ export default class ItemView extends React.Component<IItemViewProps, IItemViewS
   public render() {
     return (
       <div>
-        Testing
+        {this.props.id}
       </div>
     );
   }

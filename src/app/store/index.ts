@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import catalogReducer from './catalog';
+import catalogReducer from '../catalog/reducer';
 import { IRootState } from './state';
 
 export { IRootState };
