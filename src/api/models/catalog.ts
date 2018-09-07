@@ -1,4 +1,4 @@
-export interface IItemDataResponse {
+export interface ICatalogResults {
   CatalogEntryView: ICatalogEntryView[];
 }
 

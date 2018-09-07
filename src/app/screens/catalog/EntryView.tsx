@@ -1,9 +1,11 @@
 import * as React from 'react';
 
 export interface IItemViewProps {
+  description?: string;
 }
 
 export interface IItemViewState {
+  description?: string;
 }
 
 export default class ItemView extends React.Component<IItemViewProps, IItemViewState> {
@@ -11,8 +13,13 @@ export default class ItemView extends React.Component<IItemViewProps, IItemViewS
     super(props);
 
     this.state = {
+
     }
   }
+
+  // public componentDidMount() {
+    
+  // }
 
   public render() {
     return (
