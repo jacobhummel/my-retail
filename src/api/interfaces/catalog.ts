@@ -81,13 +81,13 @@ export interface ItemDescription {
 }
 
 export interface IImage {
-  AlternateImages: IAlternateImage[];
-  PrimaryImage: IAlternateImage[];
+  AlternateImages: IImageLocation[];
+  PrimaryImage: IImageLocation[];
   imageCount: string;
   source: string;
 }
 
-export interface IAlternateImage {
+export interface IImageLocation {
   image: string;
 }
 

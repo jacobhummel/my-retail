@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 
-import { ICatalogEntryView } from '../../../api/interfaces/catalog';
+import { ICatalogEntryView, IImageLocation } from '../../../api/interfaces/catalog';
 import { IRootState } from '../../store';
 import { fetchCatalog } from '../actions';
 import { ICatalogEntryMap } from '../reducers';
+
+import { ImageCarousel } from '../../shared/components/ImageCarousel';
 
 export interface IItemViewProps {
   id: string;
@@ -38,10 +40,20 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
       return <div />
     }
 
+    // re-order images so primary image is second in carousel
+    const carouselImages: IImageLocation[] = [
+      item.Images[0].AlternateImages[0],
+      ...item.Images[0].PrimaryImage,
+      ...item.Images[0].AlternateImages.slice(1)
+    ];
+
     return (
       <div>
-        {this.props.id}
-        {JSON.stringify(item)}
+        <ImageCarousel
+          title={item.title}
+          images={carouselImages}
+          defaultSelectedImage={1}
+        />
       </div>
     );
   }
