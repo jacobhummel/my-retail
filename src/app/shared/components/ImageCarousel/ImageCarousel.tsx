@@ -1,23 +1,54 @@
 import * as React from 'react';
 
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearchPlus } from '@fortawesome/free-solid-svg-icons/faSearchPlus';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { css } from 'emotion';
+import styled from 'react-emotion';
 import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
+import 'react-image-lightbox/style.css';
 
 import { IImageLocation } from '../../../../api/interfaces/catalog';
+import * as styles from '../../styles';
+import { TextButton } from '../TextButton';
+import { Title } from '../Title';
 
 interface IImageCarouselProps {
-    title: string;
-    images: IImageLocation[];
-    defaultSelectedImage?: number;
+  title: string;
+  images: IImageLocation[];
+  defaultSelectedImage?: number;
 }
 
 export interface IImageCarouselState {
   selectedImageIndex: number;
   lightboxIsOpen: boolean;
 }
+
+const FlexContainer = styled('div')`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+`;
+
+const PreviewImage = styled('img')((props: any) => ({
+  width: 70,
+  border: props.selected && `2px solid ${styles.neutralPrimaryColor}`,
+  borderRadius: 3,
+  margin: 10,
+  verticalAlign: 'middle',
+  cursor: 'pointer',
+}));
+
+const Pager = styled(TextButton)`
+  padding: 10px;
+`;
+
+const primaryImageClassname = css`
+  margin-bottom: 30px;
+`;
 
 export default class ImageCarousel extends React.Component<IImageCarouselProps, IImageCarouselState> {
   constructor(props: IImageCarouselProps) {
@@ -31,41 +62,49 @@ export default class ImageCarousel extends React.Component<IImageCarouselProps, 
     this.previous = this.previous.bind(this);
     this.next = this.next.bind(this);
     this.toggleLightBox = this.toggleLightBox.bind(this);
+    this.renderPagerButton = this.renderPagerButton.bind(this);
   }
 
   public render() {
     const { title, images } = this.props;
     const { selectedImageIndex } = this.state;
 
+    const showPagers: boolean = images.length >= 2;
+    const showPrevImage: boolean = images.length >= 2;
+    const showNextImage: boolean = images.length >= 3;
+
     return (
-      <div>
-          <h1>{title}</h1>
-          <img src={images[selectedImageIndex].image} />
+      <FlexContainer>
+          <Title>{title}</Title>
+          <img
+            src={images[selectedImageIndex].image}
+            className={primaryImageClassname}
+            alt={`Selected image for ${title}`}
+          />
           <div>
-            <button onClick={this.toggleLightBox}>View Larger</button>
+            <TextButton onClick={this.toggleLightBox}>
+              <FontAwesomeIcon icon={faSearchPlus} /> View Larger
+            </TextButton>
           </div>
           <div>
-            {
-              images.length >= 2 && // Only if chevron button there are >=2 total images
-              <button onClick={this.previous}>
-                <FontAwesomeIcon icon={faChevronLeft} />
-              </button>
+            { showPagers && this.renderPagerButton(this.previous, faChevronLeft)}
+            { showPrevImage &&
+              <PreviewImage
+                src={images[this.modulus(selectedImageIndex - 1, images.length)].image}
+                onClick={this.previous}
+              />
             }
-            {
-              images.length >= 2 &&  // Only show prev image if there are >=2 total images
-              <img width={80} src={images[this.modulus(selectedImageIndex - 1, images.length)].image} />
+            <PreviewImage
+              src={images[selectedImageIndex].image}
+              selected={true}
+            />
+            { showNextImage &&
+              <PreviewImage
+                onClick={this.next}
+                src={images[this.modulus(selectedImageIndex + 1, images.length)].image}
+              />
             }
-            <img width={80} src={images[selectedImageIndex].image} />
-            {
-              images.length >= 3 && // Only show next image if there are >=3 total images
-              <img width={80} src={images[this.modulus(selectedImageIndex + 1, images.length)].image} />
-            }
-            {
-              images.length >= 2 && // Only if chevron button there are >=2 total images
-              <button onClick={this.next}>
-                <FontAwesomeIcon icon={faChevronRight} />
-              </button>
-            }
+            { showPagers && this.renderPagerButton(this.next, faChevronRight)}
           </div>
           {this.state.lightboxIsOpen && (
             <Lightbox
@@ -77,7 +116,15 @@ export default class ImageCarousel extends React.Component<IImageCarouselProps, 
               onMoveNextRequest={this.next}
             />
           )}
-      </div>
+      </FlexContainer>
+    );
+  }
+
+  private renderPagerButton(onClick: React.MouseEventHandler, icon: IconProp) {
+    return (
+      <Pager onClick={onClick}>
+        <FontAwesomeIcon icon={icon} />
+      </Pager>
     );
   }
 

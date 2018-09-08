@@ -9,6 +9,7 @@ import { fetchCatalog } from '../actions';
 import { ICatalogEntryMap } from '../reducers';
 
 import { ImageCarousel } from '../../shared/components/ImageCarousel';
+import { Container } from '../../shared/components/Container';
 
 export interface IItemViewProps {
   id: string;
@@ -48,13 +49,13 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
     ];
 
     return (
-      <div>
+      <Container>
         <ImageCarousel
           title={item.title}
           images={carouselImages}
           defaultSelectedImage={1}
         />
-      </div>
+      </Container>
     );
   }
 }
