@@ -1,10 +1,10 @@
-import { ICatalogResults } from './interfaces/catalog';
+import { ICatalogResults, ICatalogEntryView } from './interfaces/catalog';
 
 // tslint:disable-next-line
 const itemData: ICatalogResults = require('./fixtures/item-data.json');
 
 interface ICatalogResultsResponse {
-    data: ICatalogResults;
+    data: ICatalogEntryView[];
 }
 
-export const retrieve = (): Promise<ICatalogResultsResponse> => Promise.resolve({ data: itemData });
+export const retrieve = (): Promise<ICatalogResultsResponse> => Promise.resolve({ data: itemData.CatalogEntryView });

@@ -1,10 +1,4 @@
-import { combineReducers } from 'redux';
-
-import catalogReducer from '../catalog/reducer';
 import { IRootState } from './state';
+import { configureStore } from './store';
 
-export { IRootState };
-
-export const rootReducer = combineReducers<IRootState>({
-    catalog: catalogReducer as any,
-});
+export { IRootState, configureStore };

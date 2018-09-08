@@ -18,12 +18,11 @@ const initialState: ICatalogState = {
 const catalogReducer = (state: ICatalogState = initialState, action: any) => {
     switch(action.type) {
         case FETCH_CATALOG_SUCCESS:
-            const itemIds: string[] = action.results.map((item: ICatalogEntryView) => item.itemId);
-            const itemsById: ICatalogEntryMap = action.results.reduce(
+            const itemIds: string[] = action.payload.results.map((item: ICatalogEntryView) => item.itemId);
+            const itemsById: ICatalogEntryMap = action.payload.results.reduce(
                 (map: ICatalogEntryMap, item: ICatalogEntryView) => {
                     map[item.itemId] = item;
-
-                    return item;
+                    return map;
                 }, {});
 
             return {
