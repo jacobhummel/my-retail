@@ -8,8 +8,9 @@ import { IRootState } from '../../store';
 import { fetchCatalog } from '../actions';
 import { ICatalogEntryMap } from '../reducers';
 
-import { ImageCarousel } from '../../shared/components/ImageCarousel';
 import { Container } from '../../shared/components/Container';
+import { ImageCarousel } from '../../shared/components/ImageCarousel';
+import OfferList from '../components/OfferList';
 
 export interface IItemViewProps {
   id: string;
@@ -55,6 +56,7 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
           images={carouselImages}
           defaultSelectedImage={1}
         />
+        <OfferList offers={item.Offers} />
       </Container>
     );
   }

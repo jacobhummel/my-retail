@@ -35,7 +35,7 @@ const FlexContainer = styled('div')`
 
 const PreviewImage = styled('img')((props: any) => ({
   width: 70,
-  border: props.selected && `2px solid ${styles.neutralPrimaryColor}`,
+  border: props.selected && `1px solid ${styles.neutralPrimaryColor}`,
   borderRadius: 3,
   margin: 10,
   verticalAlign: 'middle',
@@ -44,6 +44,7 @@ const PreviewImage = styled('img')((props: any) => ({
 
 const Pager = styled(TextButton)`
   padding: 10px;
+  font-size: 20px;
 `;
 
 const primaryImageClassname = css`
@@ -70,7 +71,7 @@ export default class ImageCarousel extends React.Component<IImageCarouselProps, 
     const { selectedImageIndex } = this.state;
 
     const showPagers: boolean = images.length >= 2;
-    const showPrevImage: boolean = images.length >= 2;
+    const showPreviousImage: boolean = images.length >= 2;
     const showNextImage: boolean = images.length >= 3;
 
     return (
@@ -83,12 +84,12 @@ export default class ImageCarousel extends React.Component<IImageCarouselProps, 
           />
           <div>
             <TextButton onClick={this.toggleLightBox}>
-              <FontAwesomeIcon icon={faSearchPlus} /> View Larger
+              <FontAwesomeIcon icon={faSearchPlus} /> view larger
             </TextButton>
           </div>
           <div>
             { showPagers && this.renderPagerButton(this.previous, faChevronLeft)}
-            { showPrevImage &&
+            { showPreviousImage &&
               <PreviewImage
                 src={images[this.modulus(selectedImageIndex - 1, images.length)].image}
                 onClick={this.previous}

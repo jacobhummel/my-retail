@@ -7,7 +7,6 @@ import { IRootState } from '../store';
 
 const PREFIX = 'CATALOG';
 
-// export const FETCH_CATALOG = `${PREFIX}_FETCH_CATALOG`;
 export const fetchCatalog = () => {
     return async (dispatch: ThunkDispatch<IRootState, void, Action>) => {
         catalog.retrieve()

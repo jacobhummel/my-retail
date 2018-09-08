@@ -1,3 +1,3 @@
 
 export const textColor: string = '#444';
-export const neutralPrimaryColor: string = '#aaa';
+export const neutralPrimaryColor: string = '#999';
