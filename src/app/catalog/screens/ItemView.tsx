@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 
+import { ICatalogEntryView } from '../../../api/interfaces/catalog';
 import { IRootState } from '../../store';
 import { fetchCatalog } from '../actions';
-import { ICatalogState } from '../reducers';
+import { ICatalogEntryMap } from '../reducers';
 
 export interface IItemViewProps {
   id: string;
-  catalog: ICatalogState;
+  itemsById: ICatalogEntryMap;
   fetchCatalog: () => void;
 }
 
@@ -31,9 +32,16 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
   }
 
   public render() {
+    const item: ICatalogEntryView = this.props.itemsById[this.props.id];
+
+    if (item === undefined) {
+      return <div />
+    }
+
     return (
       <div>
         {this.props.id}
+        {JSON.stringify(item)}
       </div>
     );
   }
@@ -41,7 +49,7 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
 
 export function mapStateToProps({ catalog }: IRootState) {
   return {
-    catalog,
+    itemsById: catalog.itemsById,
   }
 }
 

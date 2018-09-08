@@ -5,7 +5,7 @@ export interface ICatalogResults {
 export interface ICatalogEntryView {
   CustomerReview: ICustomerReview[];
   DPCI: string;
-  Images: Image[];
+  Images: IImage[];
   ItemDescription: ItemDescription[];
   Offers: IOffer[];
   POBoxProhibited: string;
@@ -80,7 +80,7 @@ export interface ItemDescription {
   features: string[];
 }
 
-export interface Image {
+export interface IImage {
   AlternateImages: IAlternateImage[];
   PrimaryImage: IAlternateImage[];
   imageCount: string;
