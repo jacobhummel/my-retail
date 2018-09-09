@@ -10,10 +10,10 @@ import styled from "react-emotion";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 
-import { IImageLocation } from "../../../../api/interfaces/catalog";
-import * as styles from "../../styles";
-import { TextButton } from "../TextButton";
-import { Title } from "../Title";
+import { IImageLocation } from "../../../api/interfaces/catalog";
+import * as styles from "../styles";
+import TextButton from "./TextButton";
+import Title from "./Title";
 
 interface IImageCarouselProps {
   title: string;

@@ -2,8 +2,11 @@ import styled from "react-emotion";
 
 import * as styles from "../styles";
 
-export const Title = styled("h1")`
+const Title = styled("h1")`
+  line-height: 1.25em;
   font-size: 1.5em;
   font-weight: 100;
   color: ${styles.textColor};
 `;
+
+export default Title;

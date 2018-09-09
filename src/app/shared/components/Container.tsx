@@ -2,7 +2,7 @@ import styled from "react-emotion";
 
 import * as styles from "../styles";
 
-export const Container = styled("div")`
+const Container = styled("div")`
   margin: 0 auto;
   padding: 30px;
   max-width: 900px;
@@ -13,3 +13,5 @@ export const Container = styled("div")`
   font-weight: 300;
   color: ${styles.textColor};
 `;
+
+export default Container;

@@ -1,4 +1,5 @@
 import * as React from "react";
+import styled from "react-emotion";
 import { connect } from "react-redux";
 import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
@@ -7,13 +8,16 @@ import {
   ICatalogEntryView,
   IImageLocation
 } from "../../../api/interfaces/catalog";
+import * as constants from "../../../api/constants";
 import { IRootState } from "../../store";
 import { fetchCatalog } from "../actions";
 import { ICatalogEntryMap } from "../reducers";
 
-import { Container } from "../../shared/components/Container";
-import { ImageCarousel } from "../../shared/components/ImageCarousel";
+import Button from "../../shared/components/Button";
+import Container from "../../shared/components/Container";
+import ImageCarousel from "../../shared/components/ImageCarousel";
 import QuantityPicker from "../../shared/components/QuantityPicker";
+import * as styles from "../../shared/styles";
 import OfferList from "../components/OfferList";
 import PromoList from "../components/PromoList";
 
@@ -26,6 +30,12 @@ export interface IItemViewProps {
 export interface IItemViewState {
   quantity: number;
 }
+
+const FlexContainer = styled("div")`
+  display: flex;
+  flex-direction: row;
+  margin: ${styles.standardGap} 0;
+`;
 
 class ItemView extends React.Component<IItemViewProps, IItemViewState> {
   constructor(props: IItemViewProps) {
@@ -56,6 +66,13 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
       ...item.Images[0].AlternateImages.slice(1)
     ];
 
+    const isAvailableInStore: boolean =
+      item.purchasingChannelCode === constants.PURCHASE_CODE_ONLINE_AND_STORE ||
+      item.purchasingChannelCode === constants.PURCHASE_CODE_STORE_ONLY;
+    const isAvailableOnline: boolean =
+      item.purchasingChannelCode === constants.PURCHASE_CODE_ONLINE_AND_STORE ||
+      item.purchasingChannelCode === constants.PURCHASE_CODE_ONLINE_ONLY;
+
     return (
       <Container>
         <ImageCarousel
@@ -66,6 +83,12 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
         <OfferList offers={item.Offers} />
         <PromoList promos={item.Promotions} />
         <QuantityPicker onChanged={this.setQuantity} />
+        <FlexContainer>
+          {isAvailableInStore && (
+            <Button backgroundColor={styles.darkColor}>Pick up in store</Button>
+          )}
+          {isAvailableOnline && <Button>Add to cart</Button>}
+        </FlexContainer>
       </Container>
     );
   }

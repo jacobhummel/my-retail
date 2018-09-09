@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "react-emotion";
 
 import * as styles from "../../shared/styles";
-import { TextButton } from "./TextButton";
+import TextButton from "./TextButton";
 
 export interface IQuantityPickerProps {
   onChanged: (quantity: number) => void;
