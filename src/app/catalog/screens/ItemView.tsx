@@ -1,17 +1,21 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { Action } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
+import * as React from "react";
+import { connect } from "react-redux";
+import { Action } from "redux";
+import { ThunkDispatch } from "redux-thunk";
 
-import { ICatalogEntryView, IImageLocation } from '../../../api/interfaces/catalog';
-import { IRootState } from '../../store';
-import { fetchCatalog } from '../actions';
-import { ICatalogEntryMap } from '../reducers';
+import {
+  ICatalogEntryView,
+  IImageLocation
+} from "../../../api/interfaces/catalog";
+import { IRootState } from "../../store";
+import { fetchCatalog } from "../actions";
+import { ICatalogEntryMap } from "../reducers";
 
-import { Container } from '../../shared/components/Container';
-import { ImageCarousel } from '../../shared/components/ImageCarousel';
-import OfferList from '../components/OfferList';
-import PromoList from '../components/PromoList';
+import { Container } from "../../shared/components/Container";
+import { ImageCarousel } from "../../shared/components/ImageCarousel";
+import OfferList from "../components/OfferList";
+import PromoList from "../components/PromoList";
+import QuantityPicker from "../../shared/components/QuantityPicker";
 
 export interface IItemViewProps {
   id: string;
@@ -27,9 +31,7 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
   constructor(props: IItemViewProps) {
     super(props);
 
-    this.state = {
-
-    }
+    this.state = {};
   }
 
   public componentDidMount() {
@@ -40,7 +42,7 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
     const item: ICatalogEntryView = this.props.itemsById[this.props.id];
 
     if (item === undefined) {
-      return <div />
+      return <div />;
     }
 
     // re-order images so primary image is second in carousel
@@ -59,6 +61,7 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
         />
         <OfferList offers={item.Offers} />
         <PromoList promos={item.Promotions} />
+        <QuantityPicker />
       </Container>
     );
   }
@@ -66,14 +69,19 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
 
 export function mapStateToProps({ catalog }: IRootState) {
   return {
-    itemsById: catalog.itemsById,
-  }
+    itemsById: catalog.itemsById
+  };
 }
 
-export function mapDispatchToProps(dispatch: ThunkDispatch<IRootState, void, Action>) {
+export function mapDispatchToProps(
+  dispatch: ThunkDispatch<IRootState, void, Action>
+) {
   return {
-    fetchCatalog: () => dispatch(fetchCatalog()),
-  }
+    fetchCatalog: () => dispatch(fetchCatalog())
+  };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemView);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ItemView);

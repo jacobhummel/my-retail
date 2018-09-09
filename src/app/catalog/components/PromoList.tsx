@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import styled from "react-emotion";
-import { css } from "emotion";
 import { faTag } from "@fortawesome/free-solid-svg-icons/faTag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { css } from "emotion";
+import styled from "react-emotion";
 
-import { IPromotion, IDescription } from "../../../api/interfaces/catalog";
+import { IDescription, IPromotion } from "../../../api/interfaces/catalog";
 import * as styles from "../../shared/styles";
 
 interface IPromoListProps {
@@ -13,7 +13,7 @@ interface IPromoListProps {
 }
 
 const PromoListContainer = styled("div")`
-  padding: ${styles.standardGap} 0;
+  padding: ${styles.standardGap};
   margin: ${styles.standardGap} 0;
   border-top: 1px solid ${styles.neutralLightColor};
   border-bottom: 1px solid ${styles.neutralLightColor};

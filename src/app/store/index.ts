@@ -1,4 +1,4 @@
-import { IRootState } from './state';
-import { configureStore } from './store';
+import { IRootState } from "./state";
+import { configureStore } from "./store";
 
 export { IRootState, configureStore };
