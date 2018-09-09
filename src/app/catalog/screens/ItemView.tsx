@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Box, Flex } from "reflexbox";
 import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
+import { Box, Flex } from "reflexbox";
 
 import * as constants from "../../../api/constants";
 import {
@@ -14,7 +14,6 @@ import { IRootState } from "../../store";
 import { fetchCatalog } from "../actions";
 import { ICatalogEntryMap } from "../reducers";
 
-import Button from "../../shared/components/Button";
 import Callout from "../../shared/components/Callout";
 import Container from "../../shared/components/Container";
 import ImageCarousel from "../../shared/components/ImageCarousel";
@@ -26,6 +25,7 @@ import FeatureList from "../components/FeatureList";
 import ItemReviews from "../components/ItemReviews";
 import OfferList from "../components/OfferList";
 import PromoList from "../components/PromoList";
+import PurchaseOptions from "../components/PurchaseOptions";
 
 export interface IItemViewProps {
   id: string;
@@ -66,13 +66,6 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
       ...item.Images[0].AlternateImages.slice(1)
     ];
 
-    const isAvailableInStore: boolean =
-      item.purchasingChannelCode === constants.PURCHASE_CODE_ONLINE_AND_STORE ||
-      item.purchasingChannelCode === constants.PURCHASE_CODE_STORE_ONLY;
-    const isAvailableOnline: boolean =
-      item.purchasingChannelCode === constants.PURCHASE_CODE_ONLINE_AND_STORE ||
-      item.purchasingChannelCode === constants.PURCHASE_CODE_ONLINE_ONLY;
-
     const policy: IReturnPolicyDetail = item.ReturnPolicy[0].ReturnPolicyDetails.filter(
       (policyDetail: IReturnPolicyDetail) =>
         policyDetail.user === constants.GUEST_BEST // TODO: don't assume the guest is the best
@@ -95,21 +88,11 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
               <Box w={[1, 1 / 2]} m={styles.standardGap}>
                 <QuantityPicker onChanged={this.setQuantity} />
               </Box>
+              <Box w={[1 / 2]} m={styles.standardGap} />
             </Flex>
-            <Flex>
-              {isAvailableInStore && (
-                <Box w={[1 / 2]} m={styles.standardGap}>
-                  <Button background={styles.darkColorGradiant}>
-                    Pick up in store
-                  </Button>
-                </Box>
-              )}
-              {isAvailableOnline && (
-                <Box w={[1 / 2]} m={styles.standardGap}>
-                  <Button>Add to cart</Button>
-                </Box>
-              )}
-            </Flex>
+            <PurchaseOptions
+              purchasingChannelCode={item.purchasingChannelCode}
+            />
             <Callout title="returns">
               <span>
                 This item must be returned within {policy.policyDays} days of

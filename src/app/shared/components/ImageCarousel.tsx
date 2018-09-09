@@ -41,6 +41,14 @@ const PreviewImage = styled("img")((props: any) => ({
   cursor: "pointer"
 }));
 
+const ShowLarger = styled("div")`
+  display: none;
+
+  @media (min-width: 420px) {
+    display: block;
+  }
+`;
+
 const Pager = styled(TextButton)`
   padding: ${styles.standardGap};
   font-size: 20px;
@@ -84,11 +92,11 @@ export default class ImageCarousel extends React.Component<
           className={primaryImageClassname}
           alt={`Selected image for ${title}`}
         />
-        <div>
+        <ShowLarger>
           <TextButton onClick={this.toggleLightBox}>
             <FontAwesomeIcon icon={faSearchPlus} /> view larger
           </TextButton>
-        </div>
+        </ShowLarger>
         <div>
           {showPagers && this.renderPagerButton(this.previous, faChevronLeft)}
           {showPreviousImage && (
