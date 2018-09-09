@@ -36,7 +36,7 @@ const FlexContainer = styled("div")`
 const PreviewImage = styled("img")((props: any) => ({
   width: 70,
   border: props.selected && `1px solid ${styles.neutralColor}`,
-  borderRadius: 3,
+  borderRadius: styles.borderRadius,
   margin: styles.standardGap,
   verticalAlign: "middle",
   cursor: "pointer"

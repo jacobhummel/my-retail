@@ -13,9 +13,9 @@ import { ICatalogEntryMap } from "../reducers";
 
 import { Container } from "../../shared/components/Container";
 import { ImageCarousel } from "../../shared/components/ImageCarousel";
+import QuantityPicker from "../../shared/components/QuantityPicker";
 import OfferList from "../components/OfferList";
 import PromoList from "../components/PromoList";
-import QuantityPicker from "../../shared/components/QuantityPicker";
 
 export interface IItemViewProps {
   id: string;
@@ -24,14 +24,18 @@ export interface IItemViewProps {
 }
 
 export interface IItemViewState {
-  description?: string;
+  quantity: number;
 }
 
 class ItemView extends React.Component<IItemViewProps, IItemViewState> {
   constructor(props: IItemViewProps) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      quantity: 0
+    };
+
+    this.setQuantity = this.setQuantity.bind(this);
   }
 
   public componentDidMount() {
@@ -61,9 +65,15 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
         />
         <OfferList offers={item.Offers} />
         <PromoList promos={item.Promotions} />
-        <QuantityPicker />
+        <QuantityPicker onChanged={this.setQuantity} />
       </Container>
     );
+  }
+
+  private setQuantity(value: number) {
+    this.setState({
+      quantity: value
+    });
   }
 }
 

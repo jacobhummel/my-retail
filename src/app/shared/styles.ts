@@ -5,3 +5,4 @@ export const primaryColor: string = "#c00";
 
 export const standardGap: string = "10px";
 export const sideGap: string = "7px";
+export const borderRadius: string = "3px";
