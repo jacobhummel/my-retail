@@ -4,6 +4,7 @@ import * as dayjs from "dayjs";
 import styled from "react-emotion";
 
 import { IReview } from "../../../api/interfaces/catalog";
+import StarRating from "../../shared/components/StarRating";
 import * as styles from "../../shared/styles";
 
 interface IItemReviewProps {
@@ -34,8 +35,10 @@ const ItemReview: React.SFC<IItemReviewProps> = props => {
   return (
     <ReviewContainer>
       <div>
-        {props.review.overallRating}
-        /5
+        <StarRating
+          number={Number.parseInt(props.review.overallRating, 10)}
+          size={14}
+        />
       </div>
       <ReviewTitle>{props.review.title}</ReviewTitle>
       <ReviewText>{props.review.review}</ReviewText>

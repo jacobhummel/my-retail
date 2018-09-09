@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "react-emotion";
 
 import { ICustomerReview, IReview } from "../../../api/interfaces/catalog";
+import StarRating from "../../shared/components/StarRating";
 import * as styles from "../../shared/styles";
 import ItemReview from "./ItemReview";
 
@@ -42,6 +43,10 @@ const BodyCategoryHeader = styled(BodyContainer)`
   border-bottom: 1px solid ${styles.neutralLightColor};
 `;
 
+const StarLabel = styled("span")`
+  margin-left: ${styles.standardGap};
+`;
+
 const ReviewCategory = styled("div")`
   flex: 1;
   font-size: 14px;
@@ -68,8 +73,15 @@ const ItemReviews: React.SFC<IItemReviewsProps> = props => {
     <div>
       <ItemReviewsHeader>
         <span>
-          {props.reviews.consolidatedOverallRating}
-          /5 overall
+          <StarRating
+            number={Number.parseInt(
+              props.reviews.consolidatedOverallRating,
+              10
+            )}
+            size={20}
+          >
+            <StarLabel>overall</StarLabel>
+          </StarRating>
         </span>
         {props.reviews.totalReviews !== "0" && (
           <a href="/">view all {props.reviews.totalReviews} reviews</a>
