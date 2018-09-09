@@ -1,5 +1,4 @@
 import * as React from "react";
-import styled from "react-emotion";
 import { connect } from "react-redux";
 import { Box, Flex } from "reflexbox";
 import { Action } from "redux";
@@ -37,16 +36,6 @@ export interface IItemViewProps {
 export interface IItemViewState {
   quantity: number;
 }
-
-const FlexContainer = styled("div")`
-  display: flex;
-  flex-direction: row;
-  margin: ${styles.standardGap} 0;
-`;
-
-const BuyButtonContainer = styled(FlexContainer)`
-  margin-bottom: ${styles.biggestGap};
-`;
 
 class ItemView extends React.Component<IItemViewProps, IItemViewState> {
   constructor(props: IItemViewProps) {
@@ -102,17 +91,25 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
           <Box w={[1, 1, 1 / 2]}>
             <OfferList offers={item.Offers} />
             <PromoList promos={item.Promotions} />
-            <FlexContainer>
-              <QuantityPicker onChanged={this.setQuantity} />
-            </FlexContainer>
-            <BuyButtonContainer>
+            <Flex>
+              <Box w={[1, 1 / 2]} m={styles.standardGap}>
+                <QuantityPicker onChanged={this.setQuantity} />
+              </Box>
+            </Flex>
+            <Flex>
               {isAvailableInStore && (
-                <Button background={styles.darkColorGradiant}>
-                  Pick up in store
-                </Button>
+                <Box w={[1 / 2]} m={styles.standardGap}>
+                  <Button background={styles.darkColorGradiant}>
+                    Pick up in store
+                  </Button>
+                </Box>
               )}
-              {isAvailableOnline && <Button>Add to cart</Button>}
-            </BuyButtonContainer>
+              {isAvailableOnline && (
+                <Box w={[1 / 2]} m={styles.standardGap}>
+                  <Button>Add to cart</Button>
+                </Box>
+              )}
+            </Flex>
             <Callout title="returns">
               <span>
                 This item must be returned within {policy.policyDays} days of
@@ -121,11 +118,17 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
                 by store and online.
               </span>
             </Callout>
-            <FlexContainer>
-              <SmallButton>Add to Registry</SmallButton>
-              <SmallButton>Add to List</SmallButton>
-              <SmallButton>Share</SmallButton>
-            </FlexContainer>
+            <Flex>
+              <Box w={[1 / 3]} m={styles.standardGap}>
+                <SmallButton>Add to Registry</SmallButton>
+              </Box>
+              <Box w={[1 / 3]} m={styles.standardGap}>
+                <SmallButton>Add to List</SmallButton>
+              </Box>
+              <Box w={[1 / 3]} m={styles.standardGap}>
+                <SmallButton>Share</SmallButton>
+              </Box>
+            </Flex>
             {item.ItemDescription[0] && (
               <FeatureList
                 title="Product Highlights"

@@ -4,7 +4,7 @@ import * as styles from "../styles";
 
 const Container = styled("div")`
   margin: 0 auto;
-  padding: 30px 15px;
+  padding: ${styles.standardGap} ${styles.smallerGap};
   max-width: 1100px;
   overflow-x: hidden;
   min-width: 280px;
@@ -15,6 +15,10 @@ const Container = styled("div")`
 
   a {
     text-decoration: none;
+  }
+
+  @media (min-width: 420px) {
+    padding: ${styles.biggestGap} ${styles.bigGap};
   }
 `;
 

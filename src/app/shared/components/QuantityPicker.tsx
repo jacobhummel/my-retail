@@ -21,7 +21,6 @@ const FlexContainer = styled("div")`
   flex: 1;
   flex-direction: row;
   justify-content: space-between;
-  margin: ${styles.standardGap};
   border: 1px solid ${styles.neutralLightColor};
   padding: 5px ${styles.standardGap};
   border-radius: ${styles.borderRadius};
