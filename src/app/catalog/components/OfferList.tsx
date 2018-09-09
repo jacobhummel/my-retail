@@ -3,19 +3,20 @@ import * as React from 'react';
 import styled from 'react-emotion';
 
 import { IOffer, IOfferPrice } from '../../../api/interfaces/catalog';
+import * as styles from '../../shared/styles';
 
 interface IOfferListProps {
   offers: IOffer[];
 }
 
 const OfferPrice = styled('div')`
-  padding: 10px 0;
+  padding: ${styles.standardGap} 0;
 `;
 
 const FormattedPrice = styled('span')`
   font-weight: bold;
   font-size: 28px;
-  margin-right: 7px;
+  margin-right: ${styles.sideGap};
 `;
 
 const PriceQualifier = styled('span')`

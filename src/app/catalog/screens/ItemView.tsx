@@ -11,6 +11,7 @@ import { ICatalogEntryMap } from '../reducers';
 import { Container } from '../../shared/components/Container';
 import { ImageCarousel } from '../../shared/components/ImageCarousel';
 import OfferList from '../components/OfferList';
+import PromoList from '../components/PromoList';
 
 export interface IItemViewProps {
   id: string;
@@ -57,6 +58,7 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
           defaultSelectedImage={1}
         />
         <OfferList offers={item.Offers} />
+        <PromoList promos={item.Promotions} />
       </Container>
     );
   }

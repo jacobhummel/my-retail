@@ -35,20 +35,20 @@ const FlexContainer = styled('div')`
 
 const PreviewImage = styled('img')((props: any) => ({
   width: 70,
-  border: props.selected && `1px solid ${styles.neutralPrimaryColor}`,
+  border: props.selected && `1px solid ${styles.neutralColor}`,
   borderRadius: 3,
-  margin: 10,
+  margin: styles.standardGap,
   verticalAlign: 'middle',
   cursor: 'pointer',
 }));
 
 const Pager = styled(TextButton)`
-  padding: 10px;
+  padding: ${styles.standardGap};
   font-size: 20px;
 `;
 
 const primaryImageClassname = css`
-  margin-bottom: 30px;
+  margin: 30px 0 50px;
 `;
 
 export default class ImageCarousel extends React.Component<IImageCarouselProps, IImageCarouselState> {

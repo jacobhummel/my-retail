@@ -4,7 +4,7 @@ import * as styles from '../styles';
 
 export const TextButton = styled('button')`
   background: none;
-  color: ${styles.neutralPrimaryColor};
+  color: ${styles.neutralColor};
   border: none;
   padding: 0;
   font: inherit;
