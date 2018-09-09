@@ -3,7 +3,6 @@ import * as React from "react";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons/faMinusCircle";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons/faPlusCircle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { css } from 'emotion';
 import styled from "react-emotion";
 
 import * as styles from "../../shared/styles";

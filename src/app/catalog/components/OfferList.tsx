@@ -16,7 +16,7 @@ const OfferPrice = styled("div")`
 const FormattedPrice = styled("span")`
   font-weight: bold;
   font-size: 28px;
-  margin-right: ${styles.sideGap};
+  margin-right: ${styles.smallGap};
 `;
 
 const PriceQualifier = styled("span")`

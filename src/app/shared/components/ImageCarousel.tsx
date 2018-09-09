@@ -5,8 +5,7 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
 import { faSearchPlus } from "@fortawesome/free-solid-svg-icons/faSearchPlus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { css } from "emotion";
-import styled from "react-emotion";
+import styled, { css } from "react-emotion";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 

@@ -3,7 +3,7 @@ import styled from "react-emotion";
 import * as styles from "../styles";
 
 interface IButtonProps {
-  backgroundColor?: string;
+  background?: string;
   color?: string;
   padding?: string;
 }
@@ -20,12 +20,12 @@ const Button = styled("button")((props: IButtonProps) => ({
   textTransform: "uppercase",
   margin: styles.standardGap,
   cursor: "pointer",
-  backgroundColor: props.backgroundColor
-    ? props.backgroundColor
-    : styles.primaryColor,
+  border: `1px solid ${styles.neutralColor}`,
+  background: props.background ? props.background : styles.primaryColorGradiant,
   color: props.color ? props.color : styles.whiteColor,
   ":hover": {
-    opacity: 0.8
+    opacity: 0.8,
+    border: `1px solid ${styles.neutralDarkColor}`
   }
 }));
 

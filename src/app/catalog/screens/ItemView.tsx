@@ -4,16 +4,18 @@ import { connect } from "react-redux";
 import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
+import * as constants from "../../../api/constants";
 import {
   ICatalogEntryView,
-  IImageLocation
+  IImageLocation,
+  IReturnPolicyDetail
 } from "../../../api/interfaces/catalog";
-import * as constants from "../../../api/constants";
 import { IRootState } from "../../store";
 import { fetchCatalog } from "../actions";
 import { ICatalogEntryMap } from "../reducers";
 
 import Button from "../../shared/components/Button";
+import Callout from "../../shared/components/Callout";
 import Container from "../../shared/components/Container";
 import ImageCarousel from "../../shared/components/ImageCarousel";
 import QuantityPicker from "../../shared/components/QuantityPicker";
@@ -38,8 +40,8 @@ const FlexContainer = styled("div")`
   margin: ${styles.standardGap} 0;
 `;
 
-const Flex = styled("div")`
-  flex: 1;
+const BuyButtonContainer = styled(FlexContainer)`
+  margin-bottom: ${styles.biggestGap};
 `;
 
 class ItemView extends React.Component<IItemViewProps, IItemViewState> {
@@ -61,7 +63,7 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
     const item: ICatalogEntryView = this.props.itemsById[this.props.id];
 
     if (item === undefined) {
-      return <div />;
+      return <div>Loading...</div>;
     }
 
     // re-order images so primary image is second in carousel
@@ -78,6 +80,11 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
       item.purchasingChannelCode === constants.PURCHASE_CODE_ONLINE_AND_STORE ||
       item.purchasingChannelCode === constants.PURCHASE_CODE_ONLINE_ONLY;
 
+    const policy: IReturnPolicyDetail = item.ReturnPolicy[0].ReturnPolicyDetails.filter(
+      (policyDetail: IReturnPolicyDetail) =>
+        policyDetail.user === constants.GUEST_BEST // TODO: don't assume the guest is the best
+    )[0];
+
     return (
       <Container>
         <ImageCarousel
@@ -89,14 +96,23 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
         <PromoList promos={item.Promotions} />
         <FlexContainer>
           <QuantityPicker onChanged={this.setQuantity} />
-          <Flex />
         </FlexContainer>
-        <FlexContainer>
+        <BuyButtonContainer>
           {isAvailableInStore && (
-            <Button backgroundColor={styles.darkColor}>Pick up in store</Button>
+            <Button background={styles.darkColorGradiant}>
+              Pick up in store
+            </Button>
           )}
           {isAvailableOnline && <Button>Add to cart</Button>}
-        </FlexContainer>
+        </BuyButtonContainer>
+        <Callout title="returns">
+          <span>
+            This item must be returned within {policy.policyDays} days of the
+            ship date. See <a href="/returns">return policy</a> for details.
+            Prices, promotions, styles, and availability may vary by store and
+            online.
+          </span>
+        </Callout>
         <FlexContainer>
           <SmallButton>Add to Registry</SmallButton>
           <SmallButton>Add to List</SmallButton>

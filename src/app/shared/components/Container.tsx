@@ -4,7 +4,7 @@ import * as styles from "../styles";
 
 const Container = styled("div")`
   margin: 0 auto;
-  padding: 30px;
+  padding: 30px 15px;
   max-width: 900px;
   min-width: 300px;
   line-height: 1.5em;

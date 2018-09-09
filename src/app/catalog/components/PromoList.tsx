@@ -2,8 +2,7 @@ import * as React from "react";
 
 import { faTag } from "@fortawesome/free-solid-svg-icons/faTag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { css } from "emotion";
-import styled from "react-emotion";
+import styled, { css } from "react-emotion";
 
 import { IDescription, IPromotion } from "../../../api/interfaces/catalog";
 import * as styles from "../../shared/styles";
@@ -26,7 +25,7 @@ const Promo = styled("div")`
 `;
 
 const tagIconClassname = css`
-  margin-right: ${styles.sideGap};
+  margin-right: ${styles.smallGap};
 `;
 
 const PromoList: React.SFC<IPromoListProps> = props => {
@@ -45,18 +44,5 @@ const PromoList: React.SFC<IPromoListProps> = props => {
     </PromoListContainer>
   );
 };
-
-// {props.offers.map((offer: IOffer) =>
-//     offer.OfferPrice
-//       .filter((offerPrice: IOfferPrice) => offerPrice.currencyCode === 'USD') // TODO: use user pref currency
-//       .map((offerPrice: IOfferPrice) => {
-//         return (
-//           <OfferPrice key={offerPrice.priceQualifier}>
-//             <FormattedPrice>{offerPrice.formattedPriceValue}</FormattedPrice>
-//             <PriceQualifier>{offerPrice.priceQualifier.toLowerCase()}</PriceQualifier>
-//           </OfferPrice>
-//         );
-//     })
-//   )}
 
 export default PromoList;
