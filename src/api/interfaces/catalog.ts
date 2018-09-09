@@ -115,7 +115,7 @@ export interface IReview {
   title: string;
   totalComments: string;
   totalVotes: string;
-  Comments?: Comment[];
+  Comments?: IComment[];
 }
 
 export interface IComment {

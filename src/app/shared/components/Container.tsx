@@ -12,6 +12,10 @@ const Container = styled("div")`
   font-family: ${styles.fontFamilyPrimary};
   font-weight: 300;
   color: ${styles.textColor};
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export default Container;

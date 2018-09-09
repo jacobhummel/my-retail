@@ -22,13 +22,12 @@ const Title = styled("div")`
 `;
 
 const Description = styled("div")`
-  font-size: 14px;
+  font-size: 13px;
   padding-left: ${styles.biggerGap};
 
   a {
     font-weight: bold;
     color: ${styles.textColor};
-    text-decoration: none;
     :hover {
       opacity: 0.9;
     }

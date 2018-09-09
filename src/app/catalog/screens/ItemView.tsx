@@ -23,6 +23,7 @@ import SmallButton from "../../shared/components/SmallButton";
 import * as styles from "../../shared/styles";
 
 import FeatureList from "../components/FeatureList";
+import ItemReviews from "../components/ItemReviews";
 import OfferList from "../components/OfferList";
 import PromoList from "../components/PromoList";
 
@@ -125,6 +126,9 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
             title="Product Highlights"
             featuresHtml={item.ItemDescription[0].features}
           />
+        )}
+        {item.ItemDescription[0] && (
+          <ItemReviews reviews={item.CustomerReview[0]} />
         )}
       </Container>
     );

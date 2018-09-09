@@ -29,7 +29,7 @@ const FeatureList: React.SFC<IFeatureListProps> = props => {
       <FeatureTitle>{props.title}</FeatureTitle>
       <FeatureUl>
         {props.featuresHtml.map((feature: string) => (
-          <li dangerouslySetInnerHTML={{ __html: feature }} />
+          <li key={feature} dangerouslySetInnerHTML={{ __html: feature }} />
         ))}
       </FeatureUl>
     </FeatureContainer>
