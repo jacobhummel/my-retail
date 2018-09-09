@@ -21,6 +21,8 @@ import ImageCarousel from "../../shared/components/ImageCarousel";
 import QuantityPicker from "../../shared/components/QuantityPicker";
 import SmallButton from "../../shared/components/SmallButton";
 import * as styles from "../../shared/styles";
+
+import FeatureList from "../components/FeatureList";
 import OfferList from "../components/OfferList";
 import PromoList from "../components/PromoList";
 
@@ -118,6 +120,12 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
           <SmallButton>Add to List</SmallButton>
           <SmallButton>Share</SmallButton>
         </FlexContainer>
+        {item.ItemDescription[0] && (
+          <FeatureList
+            title="Product Highlights"
+            featuresHtml={item.ItemDescription[0].features}
+          />
+        )}
       </Container>
     );
   }
