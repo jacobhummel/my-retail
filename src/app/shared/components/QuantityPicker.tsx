@@ -53,7 +53,7 @@ class QuantityPicker extends React.Component<
     super(props);
 
     this.state = {
-      quantity: 0
+      quantity: 1
     };
 
     this.decrement = this.decrement.bind(this);
@@ -78,7 +78,7 @@ class QuantityPicker extends React.Component<
   }
 
   private decrement() {
-    const quantity: number = Math.max(this.state.quantity - 1, 0);
+    const quantity: number = Math.max(this.state.quantity - 1, 1);
 
     this.setState({
       quantity

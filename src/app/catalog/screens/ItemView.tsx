@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "react-emotion";
 import { connect } from "react-redux";
+import { Box, Flex } from "reflexbox";
 import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
@@ -90,46 +91,56 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
 
     return (
       <Container>
-        <ImageCarousel
-          title={item.title}
-          images={carouselImages}
-          defaultSelectedImage={1}
-        />
-        <OfferList offers={item.Offers} />
-        <PromoList promos={item.Promotions} />
-        <FlexContainer>
-          <QuantityPicker onChanged={this.setQuantity} />
-        </FlexContainer>
-        <BuyButtonContainer>
-          {isAvailableInStore && (
-            <Button background={styles.darkColorGradiant}>
-              Pick up in store
-            </Button>
-          )}
-          {isAvailableOnline && <Button>Add to cart</Button>}
-        </BuyButtonContainer>
-        <Callout title="returns">
-          <span>
-            This item must be returned within {policy.policyDays} days of the
-            ship date. See <a href="/returns">return policy</a> for details.
-            Prices, promotions, styles, and availability may vary by store and
-            online.
-          </span>
-        </Callout>
-        <FlexContainer>
-          <SmallButton>Add to Registry</SmallButton>
-          <SmallButton>Add to List</SmallButton>
-          <SmallButton>Share</SmallButton>
-        </FlexContainer>
-        {item.ItemDescription[0] && (
-          <FeatureList
-            title="Product Highlights"
-            featuresHtml={item.ItemDescription[0].features}
-          />
-        )}
-        {item.ItemDescription[0] && (
-          <ItemReviews reviews={item.CustomerReview[0]} />
-        )}
+        <Flex wrap={true} p={styles.standardGap}>
+          <Box w={[1, 1, 1 / 2]}>
+            <ImageCarousel
+              title={item.title}
+              images={carouselImages}
+              defaultSelectedImage={1}
+            />
+          </Box>
+          <Box w={[1, 1, 1 / 2]}>
+            <OfferList offers={item.Offers} />
+            <PromoList promos={item.Promotions} />
+            <FlexContainer>
+              <QuantityPicker onChanged={this.setQuantity} />
+            </FlexContainer>
+            <BuyButtonContainer>
+              {isAvailableInStore && (
+                <Button background={styles.darkColorGradiant}>
+                  Pick up in store
+                </Button>
+              )}
+              {isAvailableOnline && <Button>Add to cart</Button>}
+            </BuyButtonContainer>
+            <Callout title="returns">
+              <span>
+                This item must be returned within {policy.policyDays} days of
+                the ship date. See <a href="/returns">return policy</a> for
+                details. Prices, promotions, styles, and availability may vary
+                by store and online.
+              </span>
+            </Callout>
+            <FlexContainer>
+              <SmallButton>Add to Registry</SmallButton>
+              <SmallButton>Add to List</SmallButton>
+              <SmallButton>Share</SmallButton>
+            </FlexContainer>
+            {item.ItemDescription[0] && (
+              <FeatureList
+                title="Product Highlights"
+                featuresHtml={item.ItemDescription[0].features}
+              />
+            )}
+          </Box>
+        </Flex>
+        <Flex>
+          <Box w={[1, 1, 1 / 2]}>
+            {item.ItemDescription[0] && (
+              <ItemReviews reviews={item.CustomerReview[0]} />
+            )}
+          </Box>
+        </Flex>
       </Container>
     );
   }
