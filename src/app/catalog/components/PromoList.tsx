@@ -17,6 +17,7 @@ const PromoListContainer = styled("div")`
   margin: ${styles.standardGap} 0;
   border-top: 1px solid ${styles.neutralLightColor};
   border-bottom: 1px solid ${styles.neutralLightColor};
+  font-family: ${styles.fontFamilySecondary};
 `;
 
 const Promo = styled("div")`

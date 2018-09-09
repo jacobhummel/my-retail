@@ -8,8 +8,7 @@ const Container = styled("div")`
   max-width: 900px;
   min-width: 300px;
   line-height: 1.5em;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-    Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: ${styles.fontFamilyPrimary};
   font-weight: 300;
   color: ${styles.textColor};
 `;

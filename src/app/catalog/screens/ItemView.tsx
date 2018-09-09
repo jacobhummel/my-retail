@@ -17,6 +17,7 @@ import Button from "../../shared/components/Button";
 import Container from "../../shared/components/Container";
 import ImageCarousel from "../../shared/components/ImageCarousel";
 import QuantityPicker from "../../shared/components/QuantityPicker";
+import SmallButton from "../../shared/components/SmallButton";
 import * as styles from "../../shared/styles";
 import OfferList from "../components/OfferList";
 import PromoList from "../components/PromoList";
@@ -35,6 +36,10 @@ const FlexContainer = styled("div")`
   display: flex;
   flex-direction: row;
   margin: ${styles.standardGap} 0;
+`;
+
+const Flex = styled("div")`
+  flex: 1;
 `;
 
 class ItemView extends React.Component<IItemViewProps, IItemViewState> {
@@ -82,12 +87,20 @@ class ItemView extends React.Component<IItemViewProps, IItemViewState> {
         />
         <OfferList offers={item.Offers} />
         <PromoList promos={item.Promotions} />
-        <QuantityPicker onChanged={this.setQuantity} />
+        <FlexContainer>
+          <QuantityPicker onChanged={this.setQuantity} />
+          <Flex />
+        </FlexContainer>
         <FlexContainer>
           {isAvailableInStore && (
             <Button backgroundColor={styles.darkColor}>Pick up in store</Button>
           )}
           {isAvailableOnline && <Button>Add to cart</Button>}
+        </FlexContainer>
+        <FlexContainer>
+          <SmallButton>Add to Registry</SmallButton>
+          <SmallButton>Add to List</SmallButton>
+          <SmallButton>Share</SmallButton>
         </FlexContainer>
       </Container>
     );

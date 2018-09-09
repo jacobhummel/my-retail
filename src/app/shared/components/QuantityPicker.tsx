@@ -19,6 +19,7 @@ export interface IQuantityPickerState {
 
 const FlexContainer = styled("div")`
   display: flex;
+  flex: 1;
   flex-direction: row;
   justify-content: space-between;
   margin: ${styles.standardGap};

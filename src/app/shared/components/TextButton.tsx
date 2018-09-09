@@ -9,7 +9,6 @@ const TextButton = styled("button")`
   padding: 0;
   font: inherit;
   cursor: pointer;
-  outline: inherit;
   :hover {
     color: ${styles.textColor};
   }
