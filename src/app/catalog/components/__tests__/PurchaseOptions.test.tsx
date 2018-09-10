@@ -17,19 +17,19 @@ test("PurchaseOptions shows Online and In store for purchasingChannelCode=0", ()
 
   expect(
     purchaseOptions
-      .find(`[data-test-id="${TESTID_AVAILABLE_ONLINE}"]`)
+      .find(`[data-testid="${TESTID_AVAILABLE_ONLINE}"]`)
       .children().length
   ).toEqual(1);
 
   expect(
     purchaseOptions
-      .find(`[data-test-id="${TESTID_AVAILABLE_IN_STORE}"]`)
+      .find(`[data-testid="${TESTID_AVAILABLE_IN_STORE}"]`)
       .children().length
   ).toEqual(1);
 
   expect(
     purchaseOptions
-      .find(`[data-test-id="${TESTID_AVAILABLE_ONLINE}"]`)
+      .find(`[data-testid="${TESTID_AVAILABLE_ONLINE}"]`)
       .children() // needed for styled component
       .first()
       .text()
@@ -37,7 +37,7 @@ test("PurchaseOptions shows Online and In store for purchasingChannelCode=0", ()
 
   expect(
     purchaseOptions
-      .find(`[data-test-id="${TESTID_AVAILABLE_IN_STORE}"]`)
+      .find(`[data-testid="${TESTID_AVAILABLE_IN_STORE}"]`)
       .children() // needed for styled component
       .first()
       .text()
@@ -51,19 +51,19 @@ test("PurchaseOptions shows Online only for purchasingChannelCode=1", () => {
 
   expect(
     purchaseOptions
-      .find(`[data-test-id="${TESTID_AVAILABLE_ONLINE}"]`)
+      .find(`[data-testid="${TESTID_AVAILABLE_ONLINE}"]`)
       .children().length
   ).toEqual(1);
 
   expect(
     purchaseOptions
-      .find(`[data-test-id="${TESTID_AVAILABLE_IN_STORE}"]`)
+      .find(`[data-testid="${TESTID_AVAILABLE_IN_STORE}"]`)
       .children().length
   ).toEqual(0);
 
   expect(
     purchaseOptions
-      .find(`[data-test-id="${TESTID_AVAILABLE_ONLINE}"]`)
+      .find(`[data-testid="${TESTID_AVAILABLE_ONLINE}"]`)
       .children() // needed for styled component
       .first()
       .text()
@@ -78,19 +78,19 @@ test("PurchaseOptions shows In store only for purchasingChannelCode=3", () => {
 
   expect(
     purchaseOptions
-      .find(`[data-test-id="${TESTID_AVAILABLE_IN_STORE}"]`)
+      .find(`[data-testid="${TESTID_AVAILABLE_IN_STORE}"]`)
       .children().length
   ).toEqual(1);
 
   expect(
     purchaseOptions
-      .find(`[data-test-id="${TESTID_AVAILABLE_ONLINE}"]`)
+      .find(`[data-testid="${TESTID_AVAILABLE_ONLINE}"]`)
       .children().length
   ).toEqual(0);
 
   expect(
     purchaseOptions
-      .find(`[data-test-id="${TESTID_AVAILABLE_IN_STORE}"]`)
+      .find(`[data-testid="${TESTID_AVAILABLE_IN_STORE}"]`)
       .children() // needed for styled component
       .first()
       .text()

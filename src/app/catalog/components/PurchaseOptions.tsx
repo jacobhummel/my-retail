@@ -9,8 +9,8 @@ interface IPurchaseOptionsProps {
   purchasingChannelCode: string;
 }
 
-export const TESTID_AVAILABLE_IN_STORE: string = "btn-available-in-store";
-export const TESTID_AVAILABLE_ONLINE: string = "btn-available-online";
+export const TESTID_AVAILABLE_IN_STORE: string = "TESTID_AVAILABLE_IN_STORE";
+export const TESTID_AVAILABLE_ONLINE: string = "TESTID_AVAILABLE_ONLINE";
 
 const PurchaseOptions: React.SFC<IPurchaseOptionsProps> = props => {
   const isAvailableInStore: boolean =
@@ -25,7 +25,7 @@ const PurchaseOptions: React.SFC<IPurchaseOptionsProps> = props => {
       {isAvailableInStore && (
         <Box w={[1 / 2]} m={styles.standardGap}>
           <Button
-            data-test-id={TESTID_AVAILABLE_IN_STORE}
+            data-testid={TESTID_AVAILABLE_IN_STORE}
             background={styles.darkColorGradiant}
           >
             Pick up in store
@@ -34,7 +34,7 @@ const PurchaseOptions: React.SFC<IPurchaseOptionsProps> = props => {
       )}
       {isAvailableOnline && (
         <Box w={[1 / 2]} m={styles.standardGap}>
-          <Button data-test-id={TESTID_AVAILABLE_ONLINE}>Add to cart</Button>
+          <Button data-testid={TESTID_AVAILABLE_ONLINE}>Add to cart</Button>
         </Box>
       )}
     </Flex>

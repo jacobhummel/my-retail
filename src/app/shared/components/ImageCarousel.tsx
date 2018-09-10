@@ -58,6 +58,12 @@ const primaryImageClassname = css`
   margin: 30px 0 50px;
 `;
 
+export const TESTID_CAROUSEL_TITLE: string = "TESTID_CAROUSEL_TITLE";
+export const TESTID_CAROUSEL_PRIMARY_IMAGE: string =
+  "TESTID_CAROUSEL_PRIMARY_IMAGE";
+export const TESTID_CAROUSEL_PAGE_PREV: string = "TESTID_CAROUSEL_PAGE_PREV";
+export const TESTID_CAROUSEL_PAGE_NEXT: string = "TESTID_CAROUSEL_PAGE_NEXT";
+
 export default class ImageCarousel extends React.Component<
   IImageCarouselProps,
   IImageCarouselState
@@ -86,11 +92,12 @@ export default class ImageCarousel extends React.Component<
 
     return (
       <FlexContainer>
-        <Title>{title}</Title>
+        <Title data-testid={TESTID_CAROUSEL_TITLE}>{title}</Title>
         <img
           src={images[selectedImageIndex].image}
           className={primaryImageClassname}
           alt={`Selected image for ${title}`}
+          data-testid={TESTID_CAROUSEL_PRIMARY_IMAGE}
         />
         <ShowLarger>
           <TextButton onClick={this.toggleLightBox}>
@@ -98,7 +105,12 @@ export default class ImageCarousel extends React.Component<
           </TextButton>
         </ShowLarger>
         <div>
-          {showPagers && this.renderPagerButton(this.previous, faChevronLeft)}
+          {showPagers &&
+            this.renderPagerButton(
+              this.previous,
+              faChevronLeft,
+              TESTID_CAROUSEL_PAGE_PREV
+            )}
           {showPreviousImage && (
             <PreviewImage
               src={
@@ -121,7 +133,12 @@ export default class ImageCarousel extends React.Component<
               }
             />
           )}
-          {showPagers && this.renderPagerButton(this.next, faChevronRight)}
+          {showPagers &&
+            this.renderPagerButton(
+              this.next,
+              faChevronRight,
+              TESTID_CAROUSEL_PAGE_NEXT
+            )}
         </div>
         {this.state.lightboxIsOpen && (
           <Lightbox
@@ -141,9 +158,13 @@ export default class ImageCarousel extends React.Component<
     );
   }
 
-  private renderPagerButton(onClick: React.MouseEventHandler, icon: IconProp) {
+  private renderPagerButton(
+    onClick: React.MouseEventHandler,
+    icon: IconProp,
+    testId?: string
+  ) {
     return (
-      <Pager onClick={onClick}>
+      <Pager onClick={onClick} data-testid={testId}>
         <FontAwesomeIcon icon={icon} />
       </Pager>
     );
