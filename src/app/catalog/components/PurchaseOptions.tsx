@@ -1,4 +1,5 @@
 import * as React from "react";
+import styled, { css } from "react-emotion";
 
 import { Box, Flex } from "reflexbox";
 import * as constants from "../../../api/constants";
@@ -8,6 +9,21 @@ import * as styles from "../../shared/styles";
 interface IPurchaseOptionsProps {
   purchasingChannelCode: string;
 }
+
+const purchaseOptionsClassname = css`
+  margin-bottom: ${styles.biggestGap};
+`;
+
+const HelperText = styled("div")`
+  display: none;
+  font-weight: bold;
+  text-align: center;
+  font-size: 14px;
+
+  @media (min-width: ${styles.mdBreakpoint}) {
+    display: block;
+  }
+`;
 
 export const TESTID_AVAILABLE_IN_STORE: string = "TESTID_AVAILABLE_IN_STORE";
 export const TESTID_AVAILABLE_ONLINE: string = "TESTID_AVAILABLE_ONLINE";
@@ -21,7 +37,7 @@ const PurchaseOptions: React.SFC<IPurchaseOptionsProps> = props => {
     props.purchasingChannelCode === constants.PURCHASE_CODE_ONLINE_ONLY;
 
   return (
-    <Flex>
+    <Flex className={purchaseOptionsClassname}>
       {isAvailableInStore && (
         <Box w={[1 / 2]} m={styles.standardGap}>
           <Button
@@ -30,6 +46,7 @@ const PurchaseOptions: React.SFC<IPurchaseOptionsProps> = props => {
           >
             Pick up in store
           </Button>
+          <HelperText>find in a store</HelperText>
         </Box>
       )}
       {isAvailableOnline && (

@@ -21,6 +21,8 @@ export const smallGap: string = "7px";
 export const smallerGap: string = "4px";
 export const borderRadius: string = "4px";
 
+export const mdBreakpoint: string = "440px";
+
 export const fontFamilyPrimary: string = `"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
 Helvetica, Arial, "Lucida Grande", sans-serif`;
 export const fontFamilySecondary: string = `Arial, "Lucida Grande", sans-serif;`;

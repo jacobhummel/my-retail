@@ -44,7 +44,7 @@ const PreviewImage = styled("img")((props: any) => ({
 const ShowLarger = styled("div")`
   display: none;
 
-  @media (min-width: 420px) {
+  @media (min-width: ${styles.mdBreakpoint}) {
     display: block;
   }
 `;

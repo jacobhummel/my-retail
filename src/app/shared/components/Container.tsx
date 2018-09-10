@@ -17,7 +17,7 @@ const Container = styled("div")`
     text-decoration: none;
   }
 
-  @media (min-width: 420px) {
+  @media (min-width: ${styles.mdBreakpoint}) {
     padding: ${styles.biggestGap} ${styles.bigGap};
   }
 `;

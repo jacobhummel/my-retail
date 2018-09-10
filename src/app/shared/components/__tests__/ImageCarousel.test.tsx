@@ -38,7 +38,7 @@ const images: IImageLocation[] = [
   }
 ];
 
-test("Carousel renders selected image", () => {
+test("Carousel renders correct title", () => {
   const defaultSelectedImage: number = 0;
 
   const imageCarousel = shallow(
