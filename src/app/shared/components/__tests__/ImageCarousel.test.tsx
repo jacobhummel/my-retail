@@ -5,10 +5,10 @@ import * as Adapter from "enzyme-adapter-react-16";
 
 import { IImageLocation } from "../../../../api/interfaces/catalog";
 import ImageCarousel, {
-  TESTID_CAROUSEL_PRIMARY_IMAGE,
-  TESTID_CAROUSEL_TITLE,
   TESTID_CAROUSEL_PAGE_NEXT,
-  TESTID_CAROUSEL_PAGE_PREV
+  TESTID_CAROUSEL_PAGE_PREV,
+  TESTID_CAROUSEL_PRIMARY_IMAGE,
+  TESTID_CAROUSEL_TITLE
 } from "../ImageCarousel";
 
 configure({ adapter: new Adapter() });
